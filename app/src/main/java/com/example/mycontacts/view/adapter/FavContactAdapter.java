@@ -15,10 +15,10 @@ import com.example.mycontacts.R;
 import com.example.mycontacts.model.Contact;
 import java.util.ArrayList;
 
-public class FavAndDelContactAdapter extends RecyclerView.Adapter<FavAndDelContactAdapter.FavAndDelContactView> {
+public class FavContactAdapter extends RecyclerView.Adapter<FavContactAdapter.FavAndDelContactView> {
     private Context context;
     private ArrayList<Contact> allContact = new ArrayList<>();
-    public FavAndDelContactAdapter(Context context, ArrayList<Contact> allContact) {
+    public FavContactAdapter(Context context, ArrayList<Contact> allContact) {
         this.context = context;
         this.allContact = allContact;
     }
@@ -33,6 +33,8 @@ public class FavAndDelContactAdapter extends RecyclerView.Adapter<FavAndDelConta
     @Override
     public void onBindViewHolder(@NonNull FavAndDelContactView holder, int position) {
         final Contact contact = allContact.get(position);
+        holder.imgDelete.setVisibility(View.INVISIBLE);
+        Glide.with(context).load(R.drawable.ic_fav).into(holder.imgFav);
         if(contact.getPhotoUri()!=null){
             holder.txtIconName.setVisibility(View.GONE);
             holder.imgProfile.setVisibility(View.VISIBLE);

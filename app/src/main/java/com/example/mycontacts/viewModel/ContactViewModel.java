@@ -38,6 +38,14 @@ public class ContactViewModel {
         repository.deleteContact(mobileNumber);
     }
 
+    public void removeFromFav(String mobileNumber){
+        repository.removeFromFav(mobileNumber);
+    }
+
+    public void restoreContact(){
+        repository.restoreData();
+    }
+
     public LiveData<List<Contact>> getAllFavContacts() {
         LiveData<List<Contact>> contactsOfDb = repository.getAllFavContacts();
         return contactsOfDb;

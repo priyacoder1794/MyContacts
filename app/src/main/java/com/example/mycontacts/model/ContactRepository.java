@@ -85,13 +85,23 @@ public class ContactRepository {
         }
     }
 
+    public void removeFromFav(String mobileNumber){
+        new removeFromFavContact().execute(mobileNumber);
+    }
+    //Async task to add note
+    public static class removeFromFavContact extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... mobileNumber) {
+            contactDao.removeFavContact(mobileNumber[0],Utility.NOT_SELECTED_CONTACT);
+            return null;
+        }
+    }
     //method to delete contact
     public void deleteContact(String mobileNumber){
         new updateDeletedContact().execute(mobileNumber);
     }
 
 
-    //Async task to add note
     public static class updateDeletedContact extends AsyncTask<String, Void, Void> {
         @Override
         protected Void doInBackground(String... mobileNumber) {
@@ -99,6 +109,19 @@ public class ContactRepository {
             return null;
         }
     }
+
+    public void restoreData(){
+        new restoreContacts().execute("");
+    }
+
+    public static class restoreContacts extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... mobileNumber) {
+            contactDao.restoreDeletedData(Utility.NOT_SELECTED_CONTACT);
+            return null;
+        }
+    }
+
 
     public LiveData<List<Contact>> getAllFavContacts(){
         return contactDao.getAllFavContacts();

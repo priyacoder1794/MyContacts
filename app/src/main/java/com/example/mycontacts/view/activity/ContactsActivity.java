@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mycontacts.R;
 import com.example.mycontacts.model.Contact;
+import com.example.mycontacts.util.Utility;
 import com.example.mycontacts.view.adapter.ContactAdapter;
 import com.example.mycontacts.view.interfaces.ISelectContacts;
 import com.example.mycontacts.viewModel.ContactViewModel;
@@ -65,6 +66,12 @@ public class ContactsActivity  extends AppCompatActivity implements ISelectConta
     @Override
     public void deleteContact(int position, String mobileNumber) {
         contactViewModel.deleteContact(mobileNumber);
+        getContactList();
+    }
+
+    @Override
+    public void removeFromFav(String mobileNumber) {
+        contactViewModel.removeFromFav(mobileNumber);
         getContactList();
     }
 }
